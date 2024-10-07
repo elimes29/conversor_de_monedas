@@ -1,10 +1,6 @@
 package com.aluraone.elimes.principal;
 
-import com.aluraone.elimes.modelos.CambioApi;
-import com.aluraone.elimes.utilidades.CalculaCambio;
-import com.aluraone.elimes.utilidades.HttpClient;
-
-import java.math.BigDecimal;
+import com.aluraone.elimes.utilidades.Utilidades;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,37 +9,20 @@ public class Principal {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        HttpClient http = new HttpClient();
-        CalculaCambio calculaCambio = new CalculaCambio();
-
-         /*
-
-         Código para probar
-
-        CambioApi cambioApi = http.buscarCambio("USD","ves");
-
-        System.out.println(cambioApi);
-
-        //Preueba convirtiendo 100$ a Bs
-        double monedaBase = 100;
-        BigDecimal monedaObjetivo = calculaCambio.convierte(monedaBase,cambioApi.conversionRate());
-        System.out.println(monedaBase + " $ equivalen a "+ monedaObjetivo + " Bs");
-        */
-
-
-
+        Utilidades calculaCambio = new Utilidades();
 
         // Varialbles globales
         int seleccion = 0;
-        double valor;
-        BigDecimal monedaObjetivo;
 
+        //Menú inicial
         System.out.println("**************************************");
         System.out.println("Bienvenido al conversor de Monedas");
         System.out.println("**************************************");
         System.out.println();
 
         while (seleccion != 7) {
+
+            //Menú repetitivo
             System.out.println("Ingrese el número correspondiente a la opción que deseas elegir:");
             System.out.println("1) Dolar ==> Peso Argentino");
             System.out.println("2) Peso Argentino ==> Dolar");
@@ -65,51 +44,27 @@ public class Principal {
                     switch (seleccion){
                         case 1:
                             //1) Dolar ==> Peso Argentino
-                            valor = calculaCambio.solicitaValor();
-                            CambioApi cambioApi1 = http.buscarCambio("USD","ARS");
-                            monedaObjetivo = calculaCambio.convierte(valor,cambioApi1.conversionRate());
-                            System.out.println("**************************************");
-                            System.out.println(valor + " US$ equivalen a "+ monedaObjetivo + " Pesos Argentinos");
+                            calculaCambio.mustraResultado("USD","ARS");
                             break;
                         case 2:
                             //2) Peso Argentino ==> Dolar
-                            valor = calculaCambio.solicitaValor();
-                            CambioApi cambioApi2 = http.buscarCambio("ARS","USD");
-                            monedaObjetivo = calculaCambio.convierte(valor,cambioApi2.conversionRate());
-                            System.out.println("**************************************");
-                            System.out.println(valor + " Pesos Argentinos equivalen a "+ monedaObjetivo + " US$");
+                            calculaCambio.mustraResultado("ARS","USD");
                             break;
                         case 3:
                             //3) Dolar ==> Real Brasileño
-                            valor = calculaCambio.solicitaValor();
-                            CambioApi cambioApi3 = http.buscarCambio("USD","BRL");
-                            monedaObjetivo = calculaCambio.convierte(valor,cambioApi3.conversionRate());
-                            System.out.println("**************************************");
-                            System.out.println(valor + " US$ equivalen a "+ monedaObjetivo + " Reales Brasileños");
+                            calculaCambio.mustraResultado("USD","BRL");
                             break;
                         case 4:
                             //4) Real Brasileño ==> Dolar
-                            valor = calculaCambio.solicitaValor();
-                            CambioApi cambioApi4 = http.buscarCambio("BRL","USD");
-                            monedaObjetivo = calculaCambio.convierte(valor,cambioApi4.conversionRate());
-                            System.out.println("**************************************");
-                            System.out.println(valor + " Reales Brasileños equivalen a "+ monedaObjetivo + " US$");
+                            calculaCambio.mustraResultado("BRL","USD");
                             break;
                         case 5:
                             //5) Dolar ==> Peso Colombiano
-                            valor = calculaCambio.solicitaValor();
-                            CambioApi cambioApi5 = http.buscarCambio("USD","COP");
-                            monedaObjetivo = calculaCambio.convierte(valor,cambioApi5.conversionRate());
-                            System.out.println("**************************************");
-                            System.out.println(valor + " US$ equivalen a "+ monedaObjetivo + " Pesos Colombianos");
+                            calculaCambio.mustraResultado("USD","COP");
                             break;
                         case 6:
                             //6) Peso Colombiano ==> Dolar
-                            valor = calculaCambio.solicitaValor();
-                            CambioApi cambioApi6 = http.buscarCambio("COP","USD");
-                            monedaObjetivo = calculaCambio.convierte(valor,cambioApi6.conversionRate());
-                            System.out.println("**************************************");
-                            System.out.println(valor + " Pesos Colombianos equivalen a "+ monedaObjetivo + " US$");
+                            calculaCambio.mustraResultado("COP","USD");
                             break;
                     }
                     System.out.println("**************************************");
@@ -122,7 +77,8 @@ public class Principal {
                     System.out.println();
                 } else {
                     //Retornamos al loop
-                    System.out.println("Ingresaste " + seleccion + " y este no está entre las opciones. Vuelve a intentarlo.");
+                    System.out.println("Ingresaste " + seleccion + " y este no está entre las opciones." +
+                            " Vuelve a intentarlo.");
                     System.out.println("**************************************");
                     System.out.println();
                     seleccion = 0;

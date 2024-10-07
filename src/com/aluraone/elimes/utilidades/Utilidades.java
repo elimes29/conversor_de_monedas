@@ -1,13 +1,16 @@
 package com.aluraone.elimes.utilidades;
 
+import com.aluraone.elimes.modelos.CambioApi;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class CalculaCambio {
+public class Utilidades {
 
     Scanner scanner = new Scanner(System.in);
+    HttpClient http = new HttpClient();
 
     public BigDecimal convierte(double monedaOrigen, double tasa){
         //Convirtiendo
@@ -35,6 +38,15 @@ public class CalculaCambio {
             }
         }
         return monto;  // Retorna el monto una vez que sea un número válido
+    }
+
+    public void mustraResultado (String codioBase, String codigoConvertido){
+        double valor = solicitaValor();
+        BigDecimal monedaObjetivo;
+        CambioApi cambioApi1 = http.buscarCambio("USD","ARS");
+        monedaObjetivo = convierte(valor,cambioApi1.conversionRate());
+        System.out.println("**************************************");
+        System.out.println(valor + " US$ equivalen a "+ monedaObjetivo + " Pesos Argentinos");
     }
 
 }
