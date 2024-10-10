@@ -12,4 +12,7 @@ Challenge de Alura/One en curso Java POO
 
 ## :hammer:Funcionalidades del proyecto
 
-- `Seleconar cambio a realizar`: Se despliega un meú en donde se debe ingresar la opción numérica que se desee, En este momento el prorama usa la api app.exchangerate-api.com para solicitar la tasa de cambio del par de monedas soleccionada por el usuario- `Indicar el monto a convertir`: Se ingresa el monto a convertir de forma numérica- `Muestra el resultado en pantalla`: con el reluistado de la API se calcula el monto seleccionado por el usuaro y se multiplica por la tasa- `Queda en un cliclo`: Se mantendrá en e ciclo hasta qe se señeccione el número de la opción salir.-
+- `Seleconar cambio a realizar`: Se despliega un meú en donde se debe ingresar la opción numérica que se desee, En este momento el prorama usa la api app.exchangerate-api.com para solicitar la tasa de cambio del par de monedas soleccionada por el usuario.
+- `Indicar el monto a convertir`: Se ingresa el monto a convertir de forma numérica.
+- `Muestra el resultado en pantalla`: con el reluistado de la API se calcula el monto seleccionado por el usuaro y se multiplica por la tasa.
+- `Queda en un cliclo`: Se mantendrá en e ciclo hasta qe se señeccione el número de la opción salir.-
