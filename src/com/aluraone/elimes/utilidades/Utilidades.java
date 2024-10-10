@@ -40,13 +40,29 @@ public class Utilidades {
         return monto;  // Retorna el monto una vez que sea un número válido
     }
 
-    public void mustraResultado (String codioBase, String codigoConvertido){
+    public void mustraResultado (String codigoBase, String codigoConvertido){
         double valor = solicitaValor();
         BigDecimal monedaObjetivo;
-        CambioApi cambioApi1 = http.buscarCambio("USD","ARS");
+        CambioApi cambioApi1 = http.buscarCambio(codigoBase,codigoConvertido);
         monedaObjetivo = convierte(valor,cambioApi1.conversionRate());
         System.out.println("**************************************");
-        System.out.println(valor + " US$ equivalen a "+ monedaObjetivo + " Pesos Argentinos");
+        System.out.println(valor+ " " + devuelveCodigo(codigoBase) + " equivalen a " + monedaObjetivo +
+                " " + devuelveCodigo(codigoConvertido) + ".");
     }
 
+
+    public String devuelveCodigo (String codigo){
+        switch (codigo){
+            case "ARS":
+                return "Pesos Argentinos";
+            case "COP":
+                return "Pesos colombianos";
+            case "USD":
+                return "Dolares Americanos";
+            case "BRL":
+                return "Reales Brasileños";
+            default:
+                return "No encontrado";
+        }
+    }
 }
