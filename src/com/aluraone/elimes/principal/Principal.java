@@ -1,7 +1,11 @@
 package com.aluraone.elimes.principal;
 
+import com.aluraone.elimes.modelos.Cambio;
 import com.aluraone.elimes.utilidades.Utilidades;
+
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -13,6 +17,7 @@ public class Principal {
 
         // Varialbles globales
         int seleccion = 0;
+        List<Cambio> cambiosConsultados = new ArrayList<>();
 
         //Menú inicial
         System.out.println("**************************************");
@@ -21,6 +26,7 @@ public class Principal {
         System.out.println();
 
         while (seleccion != 7) {
+            Cambio cambio = new Cambio();
 
             //Menú repetitivo
             System.out.println("Ingrese el número correspondiente a la opción que deseas elegir:");
@@ -39,33 +45,45 @@ public class Principal {
                 // Analizando que esté entre 1 y 7
                 if (seleccion >= 1 && seleccion <= 6) {
 
-                    //Hacemos la conversión y mostramos el resultado
 
+                    //Hacemos la conversión y mostramos el resultado
                     switch (seleccion){
                         case 1:
                             //1) Dolar ==> Peso Argentino
-                            calculaCambio.mustraResultado("USD","ARS");
+                            cambio = calculaCambio.mustraResultado("USD","ARS");
+                            cambiosConsultados.add(cambio);
                             break;
                         case 2:
                             //2) Peso Argentino ==> Dolar
-                            calculaCambio.mustraResultado("ARS","USD");
+                            cambio = calculaCambio.mustraResultado("ARS","USD");
+                            cambiosConsultados.add(cambio);
                             break;
                         case 3:
                             //3) Dolar ==> Real Brasileño
-                            calculaCambio.mustraResultado("USD","BRL");
+                            cambio = calculaCambio.mustraResultado("USD","BRL");
+                            cambiosConsultados.add(cambio);
                             break;
                         case 4:
                             //4) Real Brasileño ==> Dolar
-                            calculaCambio.mustraResultado("BRL","USD");
+                            cambio = calculaCambio.mustraResultado("BRL","USD");
+                            cambiosConsultados.add(cambio);
                             break;
                         case 5:
                             //5) Dolar ==> Peso Colombiano
-                            calculaCambio.mustraResultado("USD","COP");
+                            cambio = calculaCambio.mustraResultado("USD","COP");
+                            cambiosConsultados.add(cambio);
                             break;
                         case 6:
                             //6) Peso Colombiano ==> Dolar
-                            calculaCambio.mustraResultado("COP","USD");
+                            cambio = calculaCambio.mustraResultado("COP","USD");
+                            cambiosConsultados.add(cambio);
                             break;
+                    }
+                    //Imprimimos el historial de consultas
+                    System.out.println("**************************************");
+                    System.out.println("Historial de consultas");
+                    for (Cambio consulta : cambiosConsultados){
+                        System.out.println(consulta.toString());
                     }
                     System.out.println("**************************************");
                     System.out.println();

@@ -1,9 +1,11 @@
 package com.aluraone.elimes.utilidades;
 
+import com.aluraone.elimes.modelos.Cambio;
 import com.aluraone.elimes.modelos.CambioApi;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -40,7 +42,7 @@ public class Utilidades {
         return monto;  // Retorna el monto una vez que sea un número válido
     }
 
-    public void mustraResultado (String codigoBase, String codigoConvertido){
+    public Cambio mustraResultado (String codigoBase, String codigoConvertido){
         double valor = solicitaValor();
         BigDecimal monedaObjetivo;
         CambioApi cambioApi1 = http.buscarCambio(codigoBase,codigoConvertido);
@@ -48,6 +50,9 @@ public class Utilidades {
         System.out.println("**************************************");
         System.out.println(valor+ " " + devuelveCodigo(codigoBase) + " equivalen a " + monedaObjetivo +
                 " " + devuelveCodigo(codigoConvertido) + ".");
+        Date fecha = new Date();
+        Cambio cambio = new Cambio(fecha, valor, monedaObjetivo.doubleValue(), codigoBase,codigoConvertido);
+        return cambio;
     }
 
 
